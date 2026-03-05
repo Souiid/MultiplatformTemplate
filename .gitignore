@@ -1,0 +1,52 @@
+gitignore
+# --- Kotlin Multiplatform & Gradle ---
+.kotlin
+.gradle
+**/build/
+!src/**/build/
+buildSrc/build
+.gradle-snapshot
+.target
+
+# --- Android ---
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aar
+*.bundle
+
+# --- IntelliJ IDEA / Android Studio ---
+.idea/
+*.iml
+*.iws
+out/
+*.ipr
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+
+# --- iOS / Xcode ---
+# Note : On conserve la structure du projet mais on ignore les données utilisateur
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+**/xcshareddata/WorkspaceSettings.xcsettings
+*.moved-aside
+*.app
+*.framework
+*.dSYM
+*.ipa
+
+# --- OS & Divers ---
+.DS_Store
+*.swp
+*~
+*.log
+node_modules/
