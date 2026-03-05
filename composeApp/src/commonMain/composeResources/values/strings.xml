@@ -1,3 +1,4 @@
 <resources>
     <string name="welcome">Welcome</string>
+    <string name="button_action">Button action</string>
 </resources>

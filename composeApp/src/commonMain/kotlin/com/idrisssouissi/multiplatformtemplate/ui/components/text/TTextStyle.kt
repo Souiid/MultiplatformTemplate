@@ -1,4 +1,4 @@
-package com.idrisssouissi.multiplatformtemplate.ui
+package com.idrisssouissi.multiplatformtemplate.ui.components.text
 
 enum class TTextStyle {
     TITLE,
@@ -7,5 +7,6 @@ enum class TTextStyle {
     LITTLE,
     BUTTON,
     LABEL,
-    DESCRIPTION
+    DESCRIPTION,
+    ERROR
 }
