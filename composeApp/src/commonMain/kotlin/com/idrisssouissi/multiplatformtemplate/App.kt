@@ -21,6 +21,8 @@ import org.jetbrains.compose.resources.painterResource
 
 import multiplatformtemplate.composeapp.generated.resources.Res
 import multiplatformtemplate.composeapp.generated.resources.compose_multiplatform
+import multiplatformtemplate.composeapp.generated.resources.welcome
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 @Preview
@@ -30,7 +32,7 @@ fun App() {
            verticalArrangement = Arrangement.Center,
            horizontalAlignment = Alignment.CenterHorizontally) {
            TText(
-               text = "Hello",
+               text = stringResource(Res.string.welcome),
                style = TTextStyle.TITLE
            )
        }
