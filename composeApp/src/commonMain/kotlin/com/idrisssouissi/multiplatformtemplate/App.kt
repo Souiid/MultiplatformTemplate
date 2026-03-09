@@ -12,9 +12,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.idrisssouissi.multiplatformtemplate.data.User
 import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
 import com.idrisssouissi.multiplatformtemplate.ui.components.cells.UserCell
+import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TUserList
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
+import kotlin.random.Random
+import kotlin.time.Clock
 
 @Composable
 @Preview
@@ -40,12 +44,32 @@ fun App() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                UserCell(
-                    userName = "John Doe",
-                    age = "25",
-                    onClick = {}
+                val users = remember { generateUsers(7) }
+
+                TUserList(
+                    users = users,
+                    onUserClick = { user ->
+                        println(user.userID)
+                    }
                 )
             }
         }
+    }
+}
+
+fun generateUsers(count: Int): List<User> {
+
+    val now = Clock.System.now().toEpochMilliseconds()
+
+    return List(count) { index ->
+
+        val ageYears = Random.nextInt(18, 40)
+        val birthTimestamp = now - ageYears * 365L * 24 * 60 * 60 * 1000
+
+        User(
+            userID = "user_$index",
+            name = "User ${index + 1}",
+            birthTimestamp = birthTimestamp
+        )
     }
 }

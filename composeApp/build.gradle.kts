@@ -42,6 +42,7 @@ kotlin {
             implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
             implementation("media.kamel:kamel-image:1.0.9")
             implementation("media.kamel:kamel-image-default:1.0.9")
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

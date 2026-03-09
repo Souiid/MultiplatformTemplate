@@ -17,21 +17,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
+import com.idrisssouissi.multiplatformtemplate.data.User
+import com.idrisssouissi.multiplatformtemplate.data.age
 import com.idrisssouissi.multiplatformtemplate.ui.components.AppIcon
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TTextStyle
 import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens
 import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.space12
-import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.space16
-import com.idrisssouissi.multiplatformtemplate.ui.theme.LightGray
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 
 @Composable
 fun UserCell(
-    userName: String,
-    age: String,
+    user: User,
     onClick: () -> Unit
 ) {
     Row(
@@ -57,8 +55,8 @@ fun UserCell(
         Spacer(modifier = Modifier.width(space12))
 
         Column(modifier = Modifier.weight(1f)) {
-            TText(userName, style = TTextStyle.BODY)
-            TText(age, style = TTextStyle.LABEL)
+            TText(user.name, style = TTextStyle.BODY)
+            TText("Age: ${user.age()}", style = TTextStyle.LABEL)
         }
 
         Icon(
