@@ -12,6 +12,8 @@ import com.idrisssouissi.multiplatformtemplate.ui.components.button.TButton
 import com.idrisssouissi.multiplatformtemplate.ui.components.button.TButtonType
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TTextStyle
+import com.idrisssouissi.multiplatformtemplate.ui.components.textfield.TTextField
+import com.idrisssouissi.multiplatformtemplate.ui.components.textfield.TTextFieldType
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
 
 import multiplatformtemplate.composeapp.generated.resources.Res
@@ -22,6 +24,12 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 @Preview
 fun App() {
+
+    var name by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+
+
     TTheme {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -67,6 +75,14 @@ fun App() {
                 isUnderlined = true,
                 onClick = {},
             )
+
+            TTextField(name, onValueChange = {name = it}, labelTitle = "Prénom")
+            TTextField(password, onValueChange = {password = it}, labelTitle = "Mot de passe", type = TTextFieldType.PASSWORD)
+            TTextField(description, onValueChange = {description = it}, labelTitle = "Description" +
+                    "", type = TTextFieldType.DESCRIPTION)
+
+
+
         }
     }
 }

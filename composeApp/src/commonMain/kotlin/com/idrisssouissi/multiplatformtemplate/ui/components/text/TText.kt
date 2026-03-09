@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextDecoration
 @Composable
 fun TText(
     text: String,
-    style: TTextStyle,
+    style: TTextStyle = TTextStyle.BODY,
     color: Color = Color.Unspecified,
     textAlign: TextAlign = TextAlign.Start,
     textDecoration: TextDecoration? = null,

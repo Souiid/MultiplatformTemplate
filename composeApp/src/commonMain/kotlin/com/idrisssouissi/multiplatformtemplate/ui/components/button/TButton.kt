@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
@@ -17,11 +18,11 @@ fun TButton(
     text: String,
     type: TButtonType,
     onClick: () -> Unit,
+    shape: Shape = RoundedCornerShape(12.dp),
     modifier: Modifier = Modifier,
     isUnderlined: Boolean = false
 ) {
 
-    val shape = RoundedCornerShape(12.dp)
 
     when (type) {
 
