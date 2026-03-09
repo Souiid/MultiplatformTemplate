@@ -12,13 +12,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TTextStyle
+import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.radius12
 
 @Composable
 fun TButton(
     text: String,
     type: TButtonType,
     onClick: () -> Unit,
-    shape: Shape = RoundedCornerShape(12.dp),
+    shape: Shape = RoundedCornerShape(radius12),
     modifier: Modifier = Modifier,
     isUnderlined: Boolean = false
 ) {
