@@ -35,8 +35,7 @@ fun UserCell(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }
-            .padding(Dimens.space16),
+            .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -55,7 +54,7 @@ fun UserCell(
         Spacer(modifier = Modifier.width(space12))
 
         Column(modifier = Modifier.weight(1f)) {
-            TText(user.name, style = TTextStyle.BODY)
+            TText(user.name)
             TText("Age: ${user.age()}", style = TTextStyle.LABEL)
         }
 
