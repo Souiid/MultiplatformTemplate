@@ -3,6 +3,7 @@ package com.idrisssouissi.multiplatformtemplate
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,9 +13,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.idrisssouissi.multiplatformtemplate.data.AppSettings
+import com.idrisssouissi.multiplatformtemplate.data.SettingsItem
 import com.idrisssouissi.multiplatformtemplate.data.User
 import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
 import com.idrisssouissi.multiplatformtemplate.ui.components.cells.UserCell
+import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TSettingsList
 import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TUserList
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
 import kotlin.random.Random
@@ -23,6 +27,8 @@ import kotlin.time.Clock
 @Composable
 @Preview
 fun App() {
+
+    var settings by remember { mutableStateOf(AppSettings.default()) }
 
     TTheme {
         Scaffold(
@@ -36,40 +42,46 @@ fun App() {
                     onBackClick = {}
                 )
             }
-        ) {
-
+        ) { innerPadding ->
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                val users = remember { generateUsers(7) }
+                TSettingsList(
+                    settings = settings,
+                    onToggleChange = { id, value ->
 
-                TUserList(
-                    users = users,
-                    onUserClick = { user ->
-                        println(user.userID)
+                        settings = settings.map {
+                            if (it is SettingsItem.Toggle && it.id == id) {
+                                it.copy(checked = value)
+                            } else it
+                        }
+
                     }
                 )
+
             }
         }
     }
-}
 
-fun generateUsers(count: Int): List<User> {
+    fun generateUsers(count: Int): List<User> {
 
-    val now = Clock.System.now().toEpochMilliseconds()
+        val now = Clock.System.now().toEpochMilliseconds()
 
-    return List(count) { index ->
+        return List(count) { index ->
 
-        val ageYears = Random.nextInt(18, 40)
-        val birthTimestamp = now - ageYears * 365L * 24 * 60 * 60 * 1000
+            val ageYears = Random.nextInt(18, 40)
+            val birthTimestamp = now - ageYears * 365L * 24 * 60 * 60 * 1000
 
-        User(
-            userID = "user_$index",
-            name = "User ${index + 1}",
-            birthTimestamp = birthTimestamp
-        )
+            User(
+                userID = "user_$index",
+                name = "User ${index + 1}",
+                birthTimestamp = birthTimestamp
+            )
+        }
     }
 }
