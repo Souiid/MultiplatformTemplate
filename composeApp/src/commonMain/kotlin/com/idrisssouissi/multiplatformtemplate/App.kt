@@ -16,11 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.idrisssouissi.multiplatformtemplate.data.AppSettings
 import com.idrisssouissi.multiplatformtemplate.data.SettingsItem
 import com.idrisssouissi.multiplatformtemplate.data.User
+import com.idrisssouissi.multiplatformtemplate.ui.components.TDatePicker
 import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
 import com.idrisssouissi.multiplatformtemplate.ui.components.cells.UserCell
 import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TSettingsList
 import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TUserList
+import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
+import kotlinx.datetime.LocalDate
 import kotlin.random.Random
 import kotlin.time.Clock
 
@@ -29,6 +32,8 @@ import kotlin.time.Clock
 fun App() {
 
     var settings by remember { mutableStateOf(AppSettings.default()) }
+    var selectedDate by remember { mutableStateOf<LocalDate?>(null) }
+
 
     TTheme {
         Scaffold(
@@ -51,18 +56,17 @@ fun App() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                TSettingsList(
-                    settings = settings,
-                    onToggleChange = { id, value ->
-
-                        settings = settings.map {
-                            if (it is SettingsItem.Toggle && it.id == id) {
-                                it.copy(checked = value)
-                            } else it
-                        }
-
+                TDatePicker(
+                    selectedDate = selectedDate,
+                    onDateSelected = {
+                        selectedDate = it
                     }
+
                 )
+
+                selectedDate?.let {
+                    TText(it.toString())
+                }
 
             }
         }
