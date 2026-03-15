@@ -18,6 +18,7 @@ import com.idrisssouissi.multiplatformtemplate.data.User
 import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
 import com.idrisssouissi.multiplatformtemplate.ui.TDatePicker
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
+import com.idrisssouissi.multiplatformtemplate.ui.navigation.AppNavHost
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
@@ -47,26 +48,7 @@ fun App() {
                 )
             }
         ) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                TDatePicker(
-                    selectedDate = selectedDate,
-                    onDateSelected = {
-                        selectedDate = it
-                    }
-
-                )
-
-                selectedDate?.let {
-                    TText(it.toString())
-                }
-            }
+            AppNavHost()
         }
     }
 

@@ -16,7 +16,7 @@ import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.mediumRadius
 @Composable
 fun TButton(
     text: String,
-    type: TButtonType,
+    type: TButtonType = TButtonType.PRIMARY,
     onClick: () -> Unit,
     shape: Shape = RoundedCornerShape(mediumRadius),
     modifier: Modifier = Modifier,
