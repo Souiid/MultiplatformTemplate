@@ -33,6 +33,7 @@ fun TTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = LightColors,
         typography = AppTypography,
+        shapes = AppShapes,
         content = content
     )
 }
