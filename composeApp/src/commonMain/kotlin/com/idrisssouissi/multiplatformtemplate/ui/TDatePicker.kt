@@ -1,4 +1,4 @@
-package com.idrisssouissi.multiplatformtemplate.ui.components
+package com.idrisssouissi.multiplatformtemplate.ui
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.DatePicker
@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
-import com.idrisssouissi.multiplatformtemplate.ui.formatRelativeDate
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn

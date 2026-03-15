@@ -14,16 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.idrisssouissi.multiplatformtemplate.data.AppSettings
-import com.idrisssouissi.multiplatformtemplate.data.SettingsItem
 import com.idrisssouissi.multiplatformtemplate.data.User
-import com.idrisssouissi.multiplatformtemplate.ui.components.TDatePicker
 import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
-import com.idrisssouissi.multiplatformtemplate.ui.components.cells.UserCell
-import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TSettingsList
-import com.idrisssouissi.multiplatformtemplate.ui.components.lazycolumn.TUserList
+import com.idrisssouissi.multiplatformtemplate.ui.TDatePicker
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalTime
 import kotlin.random.Random
 import kotlin.time.Clock
 
@@ -34,6 +31,8 @@ fun App() {
     var settings by remember { mutableStateOf(AppSettings.default()) }
     var selectedDate by remember { mutableStateOf<LocalDate?>(null) }
 
+    var showPicker by remember { mutableStateOf(false) }
+    var selectedTime by remember { mutableStateOf<LocalTime?>(null) }
 
     TTheme {
         Scaffold(
@@ -67,7 +66,6 @@ fun App() {
                 selectedDate?.let {
                     TText(it.toString())
                 }
-
             }
         }
     }

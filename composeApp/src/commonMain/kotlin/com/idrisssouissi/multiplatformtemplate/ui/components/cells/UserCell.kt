@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -23,7 +22,7 @@ import com.idrisssouissi.multiplatformtemplate.ui.components.AppIcon
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TTextStyle
 import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens
-import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.space12
+import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.standardSpace
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 
@@ -45,13 +44,13 @@ fun UserCell(
             },
             contentDescription = null,
             modifier = Modifier
-                .size(Dimens.height48)
+                .size(Dimens.standardHeight)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.onSurfaceVariant),
             contentScale = ContentScale.Crop
         )
 
-        Spacer(modifier = Modifier.width(space12))
+        Spacer(modifier = Modifier.width(standardSpace))
 
         Column(modifier = Modifier.weight(1f)) {
             TText(user.name)
