@@ -1,9 +1,20 @@
 package com.idrisssouissi.multiplatformtemplate.ui.navigation
 
-sealed class Route(val route: String) {
+import multiplatformtemplate.composeapp.generated.resources.Res
+import multiplatformtemplate.composeapp.generated.resources.detail
+import multiplatformtemplate.composeapp.generated.resources.home
+import org.jetbrains.compose.resources.StringResource
 
-    data object Home : Route("home")
+sealed class Route(val routeName: String, val titleRes: StringResource) {
 
-    data object Detail : Route("detail")
+    data object Home : Route(
+        routeName = "home",
+        titleRes = Res.string.home
+    )
+
+    data object Detail : Route(
+        routeName = "detail",
+        titleRes = Res.string.detail
+    )
 
 }
