@@ -2,8 +2,12 @@ package com.idrisssouissi.multiplatformtemplate.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,15 +19,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TTextStyle
-import com.idrisssouissi.multiplatformtemplate.ui.theme.Black
-import com.idrisssouissi.multiplatformtemplate.ui.theme.Blue
-import com.idrisssouissi.multiplatformtemplate.ui.theme.LightGray
-import com.idrisssouissi.multiplatformtemplate.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,18 +48,26 @@ fun TTopBar(
     Column {
         TopAppBar(
             title = { TText(title, style = TTextStyle.TITLE) },
-            navigationIcon = if (isBackVisible) {
-                {
-                    IconButton(onClick = { onBackClick() }) {
-                        Icon(
-                            imageVector = AppIcon.Back,
-                            contentDescription = "Back",
-                            tint = iconTint
-                        )
-                    }
+            navigationIcon = {
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clickable(
+                            enabled = isBackVisible,
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) {
+                            onBackClick()
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = AppIcon.Back,
+                        contentDescription = "Back",
+                        tint = iconTint,
+                        modifier = Modifier.alpha(if (isBackVisible) 1f else 0f)
+                    )
                 }
-            } else {
-                {}
             },
             colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = Color.Transparent
