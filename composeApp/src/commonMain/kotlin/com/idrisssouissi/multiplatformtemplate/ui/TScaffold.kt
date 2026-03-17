@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.idrisssouissi.multiplatformtemplate.ui.components.TBottomBar
 import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
 
 @Composable
@@ -16,6 +17,7 @@ fun TScaffold(
     onFriendClick: () -> Unit = {},
     onMessageClick: () -> Unit = {},
     isActionVisible: Boolean = false,
+    bottomBar: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
 ) {
 
@@ -31,7 +33,8 @@ fun TScaffold(
                 onMessageClick = onMessageClick,
                 isActionVisible = isActionVisible
             )
-        }
+        },
+        bottomBar = {bottomBar()}
     ) { innerPadding ->
 
         content(innerPadding)

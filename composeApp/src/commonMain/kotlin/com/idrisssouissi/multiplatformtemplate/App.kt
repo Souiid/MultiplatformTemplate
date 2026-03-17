@@ -1,31 +1,19 @@
 package com.idrisssouissi.multiplatformtemplate
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.idrisssouissi.multiplatformtemplate.data.AppSettings
 import com.idrisssouissi.multiplatformtemplate.data.User
-import com.idrisssouissi.multiplatformtemplate.ui.components.TTopBar
-import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
-import com.idrisssouissi.multiplatformtemplate.ui.navigation.HomeNavHost
+import com.idrisssouissi.multiplatformtemplate.ui.navigation.AppNavHost
 import com.idrisssouissi.multiplatformtemplate.ui.theme.TTheme
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalTime
 import kotlin.random.Random
 import kotlin.time.Clock
 
 @Composable
 @Preview
-fun Home() {
+fun App() {
 
     TTheme {
-        HomeNavHost()
+        AppNavHost()
     }
 
 

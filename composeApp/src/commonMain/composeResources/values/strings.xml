@@ -3,4 +3,6 @@
     <string name="button_action">Button action</string>
     <string name="home">Home</string>
     <string name="detail">Detail</string>
+    <string name="search">Search</string>
+    <string name="create">Create</string>
 </resources>

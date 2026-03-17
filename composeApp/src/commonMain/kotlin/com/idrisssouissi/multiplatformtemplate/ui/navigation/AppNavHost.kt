@@ -4,16 +4,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.idrisssouissi.multiplatformtemplate.ui.TScaffold
-import com.idrisssouissi.multiplatformtemplate.ui.screens.DetailScreen
-import com.idrisssouissi.multiplatformtemplate.ui.screens.HomeScreen
+import com.idrisssouissi.multiplatformtemplate.ui.components.TBottomBar
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun HomeNavHost() {
+fun AppNavHost() {
 
     val navController = rememberNavController()
 
@@ -24,6 +22,8 @@ fun HomeNavHost() {
 
         Route.Home.routeName -> stringResource(Route.Home.titleRes)
         Route.Detail.routeName -> stringResource(Route.Detail.titleRes)
+        Route.Search.routeName -> stringResource(Route.Search.titleRes)
+        Route.Create.routeName -> stringResource(Route.Create.titleRes)
 
         else -> ""
     }
@@ -43,6 +43,22 @@ fun HomeNavHost() {
         onBackClick = { navController.popBackStack() },
         onFriendClick = {},
         onMessageClick = {},
+        bottomBar = {
+
+            TBottomBar(
+                currentRoute = currentRoute,
+                onNavigate = { route ->
+
+                    navController.navigate(route) {
+                        popUpTo(Route.Home.routeName)
+                        launchSingleTop = true
+                    }
+
+                }
+            )
+
+        },
+
         isActionVisible = currentRoute == Route.Home.routeName
     ) { innerPadding ->
 
@@ -52,21 +68,9 @@ fun HomeNavHost() {
             modifier = Modifier.padding(innerPadding)
         ) {
 
-            composable(Route.Home.routeName) {
-                HomeScreen(
-                    onNext = {
-                        navController.navigate(Route.Detail.routeName)
-                    }
-                )
-            }
-
-            composable(Route.Detail.routeName) {
-                DetailScreen(
-                    onBack = {
-                        navController.popBackStack()
-                    }
-                )
-            }
+            homeGraph(navController)
+            searchGraph()
+            createGraph()
         }
     }
 }

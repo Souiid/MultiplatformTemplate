@@ -2,4 +2,4 @@ package com.idrisssouissi.multiplatformtemplate
 
 import androidx.compose.ui.window.ComposeUIViewController
 
-fun MainViewController() = ComposeUIViewController { Home() }
+fun MainViewController() = ComposeUIViewController { App() }
