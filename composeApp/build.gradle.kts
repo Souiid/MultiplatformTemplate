@@ -44,6 +44,8 @@ kotlin {
             implementation("media.kamel:kamel-image-default:1.0.9")
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
