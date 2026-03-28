@@ -9,8 +9,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.idrisssouissi.multiplatformtemplate.domain.usecase.ValidationResult
+import com.idrisssouissi.multiplatformtemplate.ui.components.TErrorSnackbar
 import com.idrisssouissi.multiplatformtemplate.ui.components.button.TButton
 import com.idrisssouissi.multiplatformtemplate.ui.components.textfield.TTextField
+import kotlinx.coroutines.delay
 import org.koin.compose.koinInject
 
 @Composable
@@ -24,6 +26,8 @@ fun HomeScreen(
     var lastName by remember { mutableStateOf("") }
     var firstName by remember { mutableStateOf("") }
 
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+
     LaunchedEffect(form) {
         firstName = form.firstName
         lastName = form.lastName
@@ -31,13 +35,23 @@ fun HomeScreen(
 
     TScreen(
         verticalArrangement = Arrangement.Center,
-    ) {
+        snackbar = {
+            TErrorSnackbar(
+                message = errorMessage ?: "",
+                visible = errorMessage != null
+            )
+        })
+    {
 
         LaunchedEffect(Unit) {
             viewModel.event.collect { result ->
                 when (result) {
                     is ValidationResult.Success -> onNext()
-                    is ValidationResult.Error -> println(result.message)
+                    is ValidationResult.Error -> {
+                        errorMessage = result.message
+                        delay(2000)
+                        errorMessage = null
+                    }
                 }
             }
         }
