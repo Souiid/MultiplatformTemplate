@@ -1,14 +1,19 @@
 package com.idrisssouissi.multiplatformtemplate.ui.components.button
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.dp
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TText
 import com.idrisssouissi.multiplatformtemplate.ui.components.text.TTextStyle
 import com.idrisssouissi.multiplatformtemplate.ui.theme.Dimens.mediumRadius
@@ -20,7 +25,8 @@ fun TButton(
     onClick: () -> Unit,
     shape: Shape = RoundedCornerShape(mediumRadius),
     modifier: Modifier = Modifier,
-    isUnderlined: Boolean = false
+    isUnderlined: Boolean = false,
+    isTextAlignStart: Boolean = false
 ) {
 
 
@@ -55,6 +61,58 @@ fun TButton(
                     color = MaterialTheme.colorScheme.primary,
                     textDecoration = if (isUnderlined) TextDecoration.Underline else null
                 )
+            }
+        }
+
+        TButtonType.TEXT -> {
+            TextButton(
+                onClick = onClick,
+                modifier = modifier
+            ) {
+                TextButton(
+                    onClick = onClick,
+                    modifier = modifier.then(
+                        if (isTextAlignStart) Modifier.fillMaxWidth() else Modifier
+                    ),
+                    contentPadding = PaddingValues(vertical = 4.dp)
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = if (isTextAlignStart) Alignment.CenterStart else Alignment.Center
+                    ) {
+                        TText(
+                            text = text,
+                            style = TTextStyle.BUTTON
+                        )
+                    }
+                }
+            }
+        }
+
+        TButtonType.TEXT_NEGATIVE -> {
+            TextButton(
+                onClick = onClick,
+                modifier = modifier
+            ) {
+
+                TextButton(
+                    onClick = onClick,
+                    modifier = modifier.then(
+                        if (isTextAlignStart) Modifier.fillMaxWidth() else Modifier
+                    ),
+                    contentPadding = PaddingValues(vertical = 4.dp)
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = if (isTextAlignStart) Alignment.CenterStart else Alignment.Center
+                    ) {
+                        TText(
+                            text = text,
+                            color = MaterialTheme.colorScheme.onErrorContainer,
+                            style = TTextStyle.BUTTON
+                        )
+                    }
+                }
             }
         }
 

@@ -46,6 +46,7 @@ kotlin {
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation("io.github.ismoy:imagepickerkmp:1.0.35")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

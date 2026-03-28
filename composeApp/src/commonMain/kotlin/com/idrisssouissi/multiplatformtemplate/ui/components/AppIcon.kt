@@ -6,6 +6,7 @@ import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Person3
 import androidx.compose.material.icons.filled.Search
 
@@ -19,4 +20,6 @@ object AppIcon {
     val Home = Icons.Default.Home
     val Search = Icons.Default.Search
     val Create = Icons.Default.Create
+
+    val Person = Icons.Default.Person
 }

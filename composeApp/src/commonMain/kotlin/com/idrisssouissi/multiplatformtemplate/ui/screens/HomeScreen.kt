@@ -33,46 +33,48 @@ fun HomeScreen(
         lastName = form.lastName
     }
 
-    TScreen(
-        verticalArrangement = Arrangement.Center,
-        snackbar = {
-            TErrorSnackbar(
-                message = errorMessage ?: "",
-                visible = errorMessage != null
-            )
-        })
-    {
+    PhotoScreen()
 
-        LaunchedEffect(Unit) {
-            viewModel.event.collect { result ->
-                when (result) {
-                    is ValidationResult.Success -> onNext()
-                    is ValidationResult.Error -> {
-                        errorMessage = result.message
-                        delay(2000)
-                        errorMessage = null
-                    }
-                }
-            }
-        }
-
-        TTextField(
-            value = lastName,
-            onValueChange = { lastName = it },
-            labelTitle = "Last Name"
-        )
-
-        TTextField(
-            value = firstName,
-            onValueChange = { firstName = it },
-            labelTitle = "First Name"
-        )
-
-        TButton(
-            text = "Next",
-            onClick = {
-                viewModel.onNextClicked(firstName, lastName)
-            }
-        )
-    }
+//    TScreen(
+//        verticalArrangement = Arrangement.Center,
+//        snackbar = {
+//            TErrorSnackbar(
+//                message = errorMessage ?: "",
+//                visible = errorMessage != null
+//            )
+//        })
+//    {
+//
+//        LaunchedEffect(Unit) {
+//            viewModel.event.collect { result ->
+//                when (result) {
+//                    is ValidationResult.Success -> onNext()
+//                    is ValidationResult.Error -> {
+//                        errorMessage = result.message
+//                        delay(2000)
+//                        errorMessage = null
+//                    }
+//                }
+//            }
+//        }
+//
+//        TTextField(
+//            value = lastName,
+//            onValueChange = { lastName = it },
+//            labelTitle = "Last Name"
+//        )
+//
+//        TTextField(
+//            value = firstName,
+//            onValueChange = { firstName = it },
+//            labelTitle = "First Name"
+//        )
+//
+//        TButton(
+//            text = "Next",
+//            onClick = {
+//                viewModel.onNextClicked(firstName, lastName)
+//            }
+//        )
+//    }
 }
