@@ -115,7 +115,6 @@ fun PhotoScreen() {
             Text("Ajouter une photo")
         }
 
-        // ✅ Picker en overlay (ne remplace pas l’UI)
         if (showCamera) {
             ImagePickerLauncher(
                 config = ImagePickerConfig(
@@ -136,6 +135,7 @@ fun PhotoScreen() {
                     photo = it.firstOrNull()
                     showGallery = false
                 },
+                includeExif = true,
                 cameraCaptureConfig = cameraCaptureConfig,
                 onDismiss = { showGallery = false },
                 onError = { showGallery = false },

@@ -50,3 +50,6 @@ xcuserdata/
 *~
 *.log
 node_modules/
+
+# CocoaPods
+Pods/
