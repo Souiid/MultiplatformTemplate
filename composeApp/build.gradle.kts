@@ -1,5 +1,7 @@
+import com.android.build.gradle.internal.tasks.AarMetadataReader.Companion.load
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -29,6 +31,8 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
+            implementation("com.google.android.gms:play-services-maps:20.0.0")
+            implementation("com.google.maps.android:maps-compose:8.2.2")
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -54,6 +58,10 @@ kotlin {
     }
 }
 
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
+}
+
 android {
     namespace = "com.idrisssouissi.multiplatformtemplate"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -64,6 +72,8 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+        manifestPlaceholders["MAPS_API_KEY"] =
+            localProperties.getProperty("MAPS_API_KEY") ?: ""
     }
     packaging {
         resources {
