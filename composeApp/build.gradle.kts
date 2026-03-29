@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    kotlin("native.cocoapods")
 }
 
 kotlin {
@@ -16,7 +17,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -26,6 +27,24 @@ kotlin {
             isStatic = true
         }
     }
+
+    cocoapods {
+        summary = "ComposeApp"
+        homepage = "https://example.com"
+        version = "1.0"
+
+        ios.deploymentTarget = "14.1"
+
+        pod("GoogleMaps") {
+            version = "8.4.0"
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
+
+        framework {
+            baseName = "ComposeApp"
+        }
+    }
+
     
     sourceSets {
         androidMain.dependencies {

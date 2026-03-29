@@ -33,7 +33,6 @@ fun HomeScreen(
         lastName = form.lastName
     }
 
-    PhotoScreen()
 
 //    TScreen(
 //        verticalArrangement = Arrangement.Center,
